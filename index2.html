@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <title>AJ Bilvård – Invändig biltvätt i Halmstad</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Invändig biltvätt i Halmstad med omnejd. Noggrann städning av bilens insida till fasta priser."
+  />
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --bg-alt: #ffffff;
+      --text: #111827;
+      --text-muted: #6b7280;
+      --border: #e5e7eb;
+      --accent: #16a34a;
+      --accent-soft: #dcfce7;
+      --danger: #ef4444;
+      --radius: 12px;
+      --radius-lg: 16px;
+      --shadow-soft: 0 12px 30px rgba(15, 23, 42, 0.12);
+      --max-width: 1040px;
+      --transition-fast: 0.16s ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* NAV */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(12px);
+      background: rgba(245, 245, 247, 0.9);
+      border-bottom: 1px solid rgba(229, 231, 235, 0.9);
+    }
+
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-mark {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      border: 1px solid #cbd5f1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 600;
+      background: #ffffff;
+      color: #111827;
+    }
+
+    .brand-text-main {
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    .brand-text-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 2px;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 999px;
+      transition: width var(--transition-fast);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      padding: 6px 13px;
+      border-radius: 999px;
+      border: 1px solid var(--accent);
+      background: #f0fdf4;
+      color: #14532d;
+      font-size: 13px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: background var(--transition-fast), box-shadow var(--transition-fast),
+        transform var(--transition-fast);
+    }
+
+    .nav-cta span:last-child {
+      font-size: 15px;
+    }
+
+    .nav-cta:hover {
+      background: #dcfce7;
+      box-shadow: 0 10px 18px rgba(22, 163, 74, 0.18);
+      transform: translateY(-1px);
+    }
+
+    .main {
+      flex: 1;
+    }
+
+    .section {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 32px 16px;
+    }
+
+    /* HERO */
+    .hero {
+      padding-top: 32px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 32px;
+      align-items: center;
+    }
+
+    .hero-kicker {
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .hero-title {
+      margin: 0 0 10px;
+      font-size: clamp(26px, 4vw, 34px);
+      line-height: 1.15;
+    }
+
+    .hero-title span {
+      color: #15803d;
+    }
+
+    .hero-sub {
+      margin: 0 0 16px;
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 460px;
+    }
+
+    .hero-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px;
+      display: grid;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .hero-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .hero-check {
+      margin-top: 2px;
+      font-size: 14px;
+      color: var(--accent);
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 9px 16px;
+      font-size: 14px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background var(--transition-fast), border-color var(--transition-fast),
+        box-shadow var(--transition-fast), transform var(--transition-fast);
+      background: none;
+    }
+
+    .btn-primary {
+      background: #16a34a;
+      color: #f9fafb;
+      border-color: #15803d;
+      box-shadow: 0 12px 22px rgba(22, 163, 74, 0.28);
+      font-weight: 500;
+    }
+
+    .btn-primary:hover {
+      background: #15803d;
+      box-shadow: 0 16px 30px rgba(22, 163, 74, 0.35);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      border-color: #d1d5db;
+      background: #ffffff;
+      color: #374151;
+    }
+
+    .btn-secondary:hover {
+      border-color: #9ca3af;
+      box-shadow: 0 10px 20px rgba(148, 163, 184, 0.25);
+      transform: translateY(-1px);
+    }
+
+    .hero-note {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .hero-card {
+      background: var(--bg-alt);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+      padding: 18px 18px 16px;
+    }
+
+    .hero-card-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin: 0 0 6px;
+    }
+
+    .hero-card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .hero-small {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin: 0 0 8px;
+    }
+
+    .hero-stat {
+      padding: 10px 10px 9px;
+      border-radius: 10px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      font-size: 12px;
+    }
+
+    .hero-stat-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+
+    .hero-stat-value {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: #14532d;
+      margin-right: 6px;
+    }
+
+    /* SECTION HEADERS */
+    .section-header {
+      margin-bottom: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 12px;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .section-sub {
+      margin: 4px 0 0;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .pill {
+      font-size: 11px;
+      color: var(--text-muted);
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      background: #ffffff;
+      white-space: nowrap;
+    }
+
+    /* PRISER */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--bg-alt);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 14px 14px 16px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+
+    .card-title {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .card-tag {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .price-main {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 4px 0 2px;
+    }
+
+    .price-main span {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+
+    .price-note {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin: 0 0 8px;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 10px;
+      font-size: 12px;
+      color: var(--text-muted);
+      display: grid;
+      gap: 4px;
+    }
+
+    .feature-list li::before {
+      content: "•";
+      margin-right: 6px;
+      color: var(--accent);
+      font-size: 12px;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .badge-soft {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+    }
+
+    .badge-accent {
+      background: var(--accent-soft);
+      border-color: #bbf7d0;
+      color: #15803d;
+    }
+
+    /* VARFÖR-SEKTION */
+    .grid-3-text {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .why-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: var(--text);
+    }
+
+    /* OMDÖMEN */
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      font-size: 12px;
+    }
+
+    .testimonial-card {
+      background: var(--bg-alt);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 12px;
+    }
+
+    .testimonial-text {
+      margin: 0 0 8px;
+      color: var(--text-muted);
+    }
+
+    .testimonial-name {
+      font-weight: 600;
+      font-size: 12px;
+      margin-bottom: 2px;
+    }
+
+    .testimonial-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* KONTAKT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+      gap: 18px;
+    }
+
+    .contact-card {
+      background: var(--bg-alt);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 14px 14px 16px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .contact-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 13px;
+    }
+
+    .contact-label {
+      width: 74px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .contact-value a {
+      font-weight: 500;
+      color: var(--accent);
+    }
+
+    .contact-note {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 8px;
+      font-size: 13px;
+    }
+
+    .field {
+      display: grid;
+      gap: 4px;
+    }
+
+    .field label {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .field input,
+    .field textarea {
+      border-radius: 10px;
+      border: 1px solid #d1d5db;
+      padding: 8px 9px;
+      background: #ffffff;
+      font: inherit;
+      color: var(--text);
+      resize: vertical;
+      min-height: 38px;
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: #9ca3af;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(22, 163, 74, 0.18);
+    }
+
+    .form-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .small-text {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* FOOTER */
+    .footer {
+      border-top: 1px solid #e5e7eb;
+      padding: 14px 16px;
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: center;
+      background: #f9fafb;
+    }
+
+    .footer a {
+      color: var(--accent);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-card {
+        order: -1;
+      }
+
+      .grid-3,
+      .grid-3-text,
+      .testimonials {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        padding-top: 24px;
+      }
+
+      .grid-3,
+      .grid-3-text,
+      .testimonials {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .section {
+        padding-inline: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="nav">
+      <div class="nav-inner">
+        <div class="brand">
+          <div class="brand-mark">AJ</div>
+          <div>
+            <div class="brand-text-main">AJ Bilvård</div>
+            <div class="brand-text-sub">Invändig biltvätt i Halmstad</div>
+          </div>
+        </div>
+        <nav class="nav-links" aria-label="Huvudnavigation">
+          <a href="#tjanster">Priser</a>
+          <a href="#omdomen">Omdömen</a>
+          <a href="#kontakt">Kontakt</a>
+        </nav>
+        <a href="tel:+4670XXXXXXX" class="nav-cta">
+          <span>Ring för bokning</span>
+          <span>📞</span>
+        </a>
+      </div>
+    </header>
+
+    <main class="main">
+      <!-- HERO -->
+      <section class="section" id="start">
+        <div class="hero">
+          <div>
+            <div class="hero-kicker">
+              <span class="hero-dot"></span>
+              Invändig biltvätt – hemma hos dig
+            </div>
+            <h1 class="hero-title">
+              Ren bil invändigt,<br />
+              utan krångel.
+              <!-- Vill du ha lite extra punch:
+              Ren bil invändigt.<br /><span>Utan krångel.</span>
+              -->
+            </h1>
+            <p class="hero-sub">
+              Jag städar din bil invändigt – säten, mattor, paneler och detaljer. Fasta priser
+              och personlig service i <strong>Halmstad med omnejd</strong>.
+            </p>
+            <ul class="hero-list">
+              <li>
+                <span class="hero-check">✓</span>
+                <span>Ung, noggrann och tar hellre färre bilar än att stressa.</span>
+              </li>
+              <li>
+                <span class="hero-check">✓</span>
+                <span>Perfekt inför försäljning, leasingåterlämning eller bara en nystart.</span>
+              </li>
+              <li>
+                <span class="hero-check">✓</span>
+                <span>Enkel bokning via telefon, sms eller formulär.</span>
+              </li>
+            </ul>
+            <div class="hero-ctas">
+              <a href="tel:+4670XXXXXXX" class="btn btn-primary">
+                <span>Ring och boka</span>
+                <span>📞</span>
+              </a>
+              <a href="#tjanster" class="btn btn-secondary">
+                <span>Se tjänster & priser</span>
+              </a>
+            </div>
+            <p class="hero-note">
+              Just nu har jag rabatterade startpriser för nya kunder.
+            </p>
+          </div>
+
+          <aside class="hero-card" aria-label="Snabb överblick">
+            <h2 class="hero-card-title">Kort om AJ Bilvård</h2>
+            <p class="hero-small">
+              Invändig biltvätt med fokus på detaljer och en ren känsla varje gång du sätter
+              dig bakom ratten.
+            </p>
+            <div class="hero-card-grid">
+              <div class="hero-stat">
+                <div class="hero-stat-label">Pris från</div>
+                <div class="hero-stat-value">450 kr</div>
+                <div class="hero-small">Personbil, invändigt</div>
+              </div>
+              <div class="hero-stat">
+                <div class="hero-stat-label">Område</div>
+                <div class="hero-stat-value">Halmstad</div>
+                <div class="hero-small">+ närliggande orter</div>
+              </div>
+            </div>
+            <p class="hero-small">
+              <span class="hero-tag">Kvällar & helger</span>
+              <span class="hero-tag">Unga företagare</span>
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <!-- TJÄNSTER & PRISER -->
+      <section class="section" id="tjanster">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Tjänster & priser</h2>
+            <p class="section-sub">
+              Tydliga paket och fasta priser. Alla priser är inklusive moms.
+            </p>
+          </div>
+          <div class="pill">Fråga gärna vid större bilar eller extrema skick.</div>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <div class="card-header">
+              <h3 class="card-title">Standard invändig</h3>
+              <span class="card-tag">Personbil</span>
+            </div>
+            <p class="price-main">
+              450 kr <span>/ bil</span>
+            </p>
+            <p class="price-note">
+              Bra grundstädning för dig som vill få bort skräp, smuts och damm.
+            </p>
+            <ul class="feature-list">
+              <li>Dammsugning av golv, mattor och säten</li>
+              <li>Avtorkning av paneler, dörrsidor och mittkonsol</li>
+              <li>Rengöring av mugghållare och förvaringsfack</li>
+              <li>Snabb avtorkning av insida rutor</li>
+            </ul>
+            <div class="card-footer">
+              <span class="badge-soft">Bra för vardagsbilen</span>
+              <span>Ca 60–75 min</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <h3 class="card-title">Noggrann invändig</h3>
+              <span class="card-tag">Mest vald</span>
+            </div>
+            <p class="price-main">
+              550 kr <span>/ bil</span>
+            </p>
+            <p class="price-note">
+              Rekommenderas inför försäljning, leasingåterlämning eller om det var länge sedan
+              bilen städades.
+            </p>
+            <ul class="feature-list">
+              <li>Allt i Standard-paketet</li>
+              <li>Extra fokus på detaljer och trånga utrymmen</li>
+              <li>Noggrann rengöring av paneler, knappar och ytor du rör ofta</li>
+              <li>Enkel luktcheck – åtgärd vid behov</li>
+            </ul>
+            <div class="card-footer">
+              <span class="badge-soft badge-accent">Bästa värde</span>
+              <span>Ca 90 min</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <h3 class="card-title">Större bil / SUV</h3>
+              <span class="card-tag">Kombi, SUV, minibuss</span>
+            </div>
+            <p class="price-main">
+              fr. 650 kr <span>/ bil</span>
+            </p>
+            <p class="price-note">
+              För större bilar och familjebussar med mer yta och extra bagageutrymme.
+            </p>
+            <ul class="feature-list">
+              <li>Allt i Noggrann invändig</li>
+              <li>Bagageutrymme dammsugs och torkas av</li>
+              <li>Anpassad tidsåtgång efter bilens storlek och skick</li>
+            </ul>
+            <div class="card-footer">
+              <span class="badge-soft">Skicka gärna bild</span>
+              <span>Pris efter skick</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- VARFÖR VÄLJA -->
+      <section class="section" id="varfor">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Varför välja AJ Bilvård?</h2>
+            <p class="section-sub">
+              Tjänsten är enkel – men noggrann. Du vet vad du får och vad det kostar.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid-3-text">
+          <div>
+            <div class="why-title">Personlig kontakt</div>
+            <p>
+              Du pratar direkt med den som gör jobbet. Inga callcenter, inga mellanhänder. En
+              person, ett ansvar.
+            </p>
+          </div>
+          <div>
+            <div class="why-title">Noggrant, inte stressigt</div>
+            <p>
+              Jag planerar hellre färre bilar per dag och gör det ordentligt, än att stressa
+              igenom många.
+            </p>
+          </div>
+          <div>
+            <div class="why-title">Smidig bokning</div>
+            <p>
+              Ring, sms:a eller använd formuläret. Berätta kort om bil, skick och när det
+              passar – så hittar vi en tid.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- OMDÖMEN -->
+      <section class="section" id="omdomen">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Omdömen</h2>
+            <p class="section-sub">
+              Några röster från de första kunderna. Fler referenser lämnas gärna vid
+              förfrågan.
+            </p>
+          </div>
+        </div>
+
+        <div class="testimonials">
+          <article class="testimonial-card">
+            <p class="testimonial-text">
+              “Bilen såg ärligt talat bedrövlig ut innan – tre barn och noll tid. Efteråt
+              kändes den nästan som ny. Väldigt noggrant gjort.”
+            </p>
+            <div class="testimonial-name">Lisa, Halmstad</div>
+            <div class="testimonial-meta">Två barn, kombi</div>
+          </article>
+
+          <article class="testimonial-card">
+            <p class="testimonial-text">
+              “Smidigt att han kom hem till oss. Tydligt pris, inget krångel. Kommer boka
+              igen inför besiktning.”
+            </p>
+            <div class="testimonial-name">Johan, Gullbrandstorp</div>
+            <div class="testimonial-meta">Pendlarbil</div>
+          </article>
+
+          <article class="testimonial-card">
+            <p class="testimonial-text">
+              “Anlitade honom inför försäljning. Spekulanterna kommenterade att bilen var
+              fräsch invändigt – den såldes snabbt.”
+            </p>
+            <div class="testimonial-name">Malin, Fyllinge</div>
+            <div class="testimonial-meta">Inför bilförsäljning</div>
+          </article>
+        </div>
+      </section>
+
+      <!-- KONTAKT -->
+      <section class="section" id="kontakt">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Kontakt & bokning</h2>
+            <p class="section-sub">
+              Skicka ett sms, ring eller fyll i formuläret så återkommer jag så snart jag kan.
+            </p>
+          </div>
+          <div class="pill">Jobbar främst kvällar & helger.</div>
+        </div>
+
+        <div class="contact-grid">
+          <aside class="contact-card">
+            <div class="contact-row">
+              <div class="contact-label">Telefon</div>
+              <div class="contact-value">
+                <a href="tel:+4670XXXXXXX">070-XXX XX XX</a>
+              </div>
+            </div>
+            <div class="contact-row">
+              <div class="contact-label">E-post</div>
+              <div class="contact-value">
+                <a href="mailto:kontakt@ajbilvard.se">kontakt@ajbilvard.se</a>
+              </div>
+            </div>
+            <div class="contact-row">
+              <div class="contact-label">Område</div>
+              <div class="contact-value">
+                Halmstad med omnejd – fråga gärna om du bor lite utanför.
+              </div>
+            </div>
+            <p class="contact-note">
+              Skriv gärna vilken bilmodell du har, ungefär vilket skick bilen är i (barn, hund,
+              mycket smuts osv) och förslag på dag/tid. En bild på insidan av bilen vid sms
+              underlättar.
+            </p>
+          </aside>
+
+          <form class="contact-card contact-form" onsubmit="return sendMailto(event)">
+            <div class="field">
+              <label for="name">Namn</label>
+              <input id="name" name="name" type="text" placeholder="Ditt namn" required />
+            </div>
+            <div class="field">
+              <label for="phone">Telefon</label>
+              <input id="phone" name="phone" type="tel" placeholder="07X-XXX XX XX" required />
+            </div>
+            <div class="field">
+              <label for="car">Bilmodell</label>
+              <input
+                id="car"
+                name="car"
+                type="text"
+                placeholder="Ex: Volvo V60, SUV, minibuss..."
+              />
+            </div>
+            <div class="field">
+              <label for="message">Meddelande</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="3"
+                placeholder="Kort om vad du vill ha hjälp med samt förslag på dag/tid."
+              ></textarea>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">
+                Skicka förfrågan
+              </button>
+              <div class="small-text">
+                Formuläret öppnar ditt e-postprogram med allt ifyllt – du skickar därifrån.
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      © <span id="year"></span> AJ Bilvård. Invändig biltvätt i Halmstad med omnejd.
+    </footer>
+  </div>
+
+  <script>
+    // aktuellt år i footern
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // enkel mailto-form
+    function sendMailto(event) {
+      event.preventDefault();
+      var name = document.getElementById("name").value.trim();
+      var phone = document.getElementById("phone").value.trim();
+      var car = document.getElementById("car").value.trim();
+      var message = document.getElementById("message").value.trim();
+
+      var subject = encodeURIComponent("Förfrågan biltvätt från " + name);
+      var bodyLines = [
+        "Namn: " + name,
+        "Telefon: " + phone,
+        car ? "Bilmodell: " + car : "",
+        "",
+        message || "Jag är intresserad av invändig biltvätt."
+      ].filter(Boolean);
+
+      var body = encodeURIComponent(bodyLines.join("\n"));
+      var mailto =
+        "mailto:kontakt@ajbilvard.se?subject=" + subject + "&body=" + body;
+      window.location.href = mailto;
+      return false;
+    }
+  </script>
+</body>
+</html>
