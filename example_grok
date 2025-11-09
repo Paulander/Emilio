@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paulander Bilvård</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <style>
+        body { font-family: 'Arial', sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
+        #background { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+        .hero { background-color: #007bff; color: white; padding: 100px 20px; text-align: center; position: relative; }
+        .hero h1 { font-size: 3rem; margin-bottom: 20px; }
+        .hero p { font-size: 1.2rem; max-width: 800px; margin: 0 auto 20px; }
+        .section { padding: 60px 20px; }
+        .card { margin-bottom: 20px; }
+        blockquote { font-style: italic; margin: 20px 0; }
+        footer { background-color: #343a40; color: white; padding: 20px; text-align: center; }
+        form { max-width: 600px; margin: 0 auto; }
+        form label { display: block; margin-top: 10px; }
+        form input, form textarea { width: 100%; padding: 10px; margin-top: 5px; }
+    </style>
+</head>
+<body>
+    <div id="background"></div>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>Paulander Bilvård</h1>
+            <p>Invändig biltvätt hemma hos dig – noggrant och enkelt.</p>
+            <p>Jag heter Emilio och är en ung, ambitiös kille som erbjuder professionell invändig bilvård i Halmstad med omnejd. Jag kommer hem till dig och ser till att din bil blir skinande ren inuti, med fokus på detaljer och kvalitet. Oavsett om det är vardagsunderhåll eller förberedelse inför försäljning, gör jag jobbet effektivt och noggrant.</p>
+            <a href="tel:+46701234567" class="btn btn-light me-2">Ring och boka</a>
+            <a href="#priser" class="btn btn-outline-light">Se priser</a>
+        </div>
+    </section>
+
+    <!-- Tjänster & priser -->
+    <section id="priser" class="section">
+        <div class="container">
+            <h2 class="text-center mb-4">Tjänster & priser</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card p-3">
+                        <h5>Standard invändig</h5>
+                        <p><strong>450 kr</strong></p>
+                        <p>Dammsugning, avtorkning av paneler, rutor, fickor</p>
+                        <p>Passar för vanligt underhåll</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card p-3">
+                        <h5>Noggrann invändig</h5>
+                        <p><strong>550 kr</strong></p>
+                        <p>Allt i Standard + extra detaljarbete, luktcheck</p>
+                        <p>Passar för försäljning eller leasingåterlämning</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card p-3">
+                        <h5>Större bil/SUV</h5>
+                        <p><strong>fr. 650 kr</strong></p>
+                        <p>Samma som Noggrann + bagageutrymme</p>
+                        <p>Passar för kombi, minibuss</p>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center mt-3">Alla priser inkl. moms.</p>
+            <p class="text-center">Offert vid extrema skick eller specialönskemål.</p>
+        </div>
+    </section>
+
+    <!-- Omdömen -->
+    <section class="section bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4">Omdömen</h2>
+            <blockquote class="blockquote text-center">"Bilen såg ny ut efteråt. Väldigt noggrant gjort." — Lisa, Halmstad</blockquote>
+            <blockquote class="blockquote text-center">"Smidigt, bra pris, trevlig kille." — Johan, Gullbrandstorp</blockquote>
+            <blockquote class="blockquote text-center">"Perfekt service hemma! Rekommenderar starkt." — Anna, Falkenberg</blockquote>
+        </div>
+    </section>
+
+    <!-- Kontakt & bokning -->
+    <section id="kontakt" class="section">
+        <div class="container">
+            <h2 class="text-center mb-4">Kontakt & bokning</h2>
+            <p class="text-center">Telefon: <a href="tel:+46701234567">070-123 45 67</a></p>
+            <p class="text-center">E-post: <a href="mailto:info@paulanderbilvard.se">info@paulanderbilvard.se</a></p>
+            <p class="text-center">Område: Halmstad med omnejd</p>
+            <p class="text-center">Jag jobbar främst kvällar och helger.</p>
+            <p class="text-center">Skicka gärna en bild på bilens insida för snabb offert.</p>
+            <form action="mailto:info@paulanderbilvard.se" method="post" enctype="text/plain">
+                <label for="namn">Namn:</label>
+                <input type="text" id="namn" name="Namn">
+                <label for="telefon">Telefon:</label>
+                <input type="text" id="telefon" name="Telefon">
+                <label for="bilmodell">Bilmodell:</label>
+                <input type="text" id="bilmodell" name="Bilmodell">
+                <label for="meddelande">Meddelande:</label>
+                <textarea id="meddelande" name="Meddelande"></textarea>
+                <input type="submit" value="Skicka" class="btn btn-primary mt-3">
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Paulander Bilvård</p>
+        <p>Invändig biltvätt i Halmstad med omnejd.</p>
+    </footer>
+
+    <script>
+        // Three.js particle background (subtle clean bubbles effect)
+        const container = document.getElementById('background');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        container.appendChild(renderer.domElement);
+
+        const particles = 5000;
+        const geometry = new THREE.BufferGeometry();
+        const positions = new Float32Array(particles * 3);
+        for (let i = 0; i < positions.length; i += 3) {
+            positions[i] = (Math.random() - 0.5) * 2000;
+            positions[i + 1] = (Math.random() - 0.5) * 2000;
+            positions[i + 2] = (Math.random() - 0.5) * 2000;
+        }
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+        const material = new THREE.PointsMaterial({ color: 0x007bff, size: 2, transparent: true, opacity: 0.5 });
+        const particleSystem = new THREE.Points(geometry, material);
+        scene.add(particleSystem);
+
+        camera.position.z = 1000;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            particleSystem.rotation.y += 0.0005;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>
