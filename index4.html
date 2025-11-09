@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <title>AJ Bilvård – Invändig biltvätt i Halmstad</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Invändig biltvätt i Halmstad med omnejd. Handgjord, personlig känsla – som en anslagstavla hemma i hallen."
+  />
+  <style>
+    :root {
+      --bg: #f3eee5;
+      --cork: #c49b6c;
+      --cork-dark: #a27c4d;
+      --paper: #fdfcf8;
+      --paper-yellow: #fff7cc;
+      --paper-blue: #e5f0ff;
+      --paper-green: #e7fbe5;
+      --ink: #333333;
+      --muted: #6b6b6b;
+      --accent: #2f855a;
+      --danger: #e53e3e;
+      --shadow-note: 0 12px 18px rgba(60, 40, 20, 0.28);
+      --radius-note: 10px;
+      --pin-red: #f56565;
+      --pin-blue: #4299e1;
+      --pin-yellow: #ecc94b;
+      --max-width: 1080px;
+      --transition-fast: 0.2s ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #f7f3ea 0, #e6dfd1 40%, #d9cfbd 100%);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* NAV – enkel, diskret */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(10px);
+      background: rgba(243, 238, 229, 0.95);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: #ffffff;
+      border: 2px solid #e2d7c5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 15px;
+      box-shadow: 0 3px 4px rgba(0, 0, 0, 0.08);
+    }
+
+    .brand-text-main {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .brand-text-sub {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 2px;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width var(--transition-fast);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      border-radius: 999px;
+      border: 1px solid var(--accent);
+      padding: 5px 11px;
+      font-size: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #f0fff4;
+      color: #22543d;
+      cursor: pointer;
+      transition: background var(--transition-fast), box-shadow var(--transition-fast),
+        transform var(--transition-fast);
+    }
+
+    .nav-cta:hover {
+      background: #c6f6d5;
+      box-shadow: 0 6px 10px rgba(34, 84, 61, 0.25);
+      transform: translateY(-1px);
+    }
+
+    .main {
+      flex: 1;
+    }
+
+    .section {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 24px 16px;
+    }
+
+    /* HERO TEXT ABOVE BOARD */
+    .hero-intro {
+      text-align: center;
+      margin-top: 24px;
+      margin-bottom: 8px;
+    }
+
+    .hero-kicker {
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .hero-title {
+      margin: 0 0 6px;
+      font-size: clamp(24px, 3.4vw, 30px);
+      font-weight: 700;
+    }
+
+    .hero-sub {
+      margin: 0;
+      font-size: 13px;
+      color: var(--muted);
+      max-width: 440px;
+      margin-inline: auto;
+    }
+
+    /* CORK BOARD */
+    .board-wrap {
+      padding: 18px 0 32px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .board {
+      width: 100%;
+      max-width: 960px;
+      min-height: 420px;
+      background: radial-gradient(circle at 20% 15%, #d7b68a 0, #c49b6c 40%, #a67d50 100%);
+      border-radius: 18px;
+      border: 8px solid #8b5a2b;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+      padding: 18px;
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    /* NOTES / POLAROIDS */
+    .note,
+    .photo-card {
+      position: relative;
+      padding: 14px 12px 12px;
+      border-radius: var(--radius-note);
+      background: var(--paper);
+      box-shadow: var(--shadow-note);
+      transform-origin: top center;
+      transition: transform 0.35s ease-out, box-shadow 0.35s ease-out,
+        opacity 0.35s ease-out, filter 0.3s ease-out;
+      cursor: default;
+    }
+
+    .note {
+      font-family: "Segoe Print", "Comic Sans MS", system-ui, -apple-system,
+        BlinkMacSystemFont, sans-serif;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .note-yellow {
+      background: var(--paper-yellow);
+    }
+
+    .note-blue {
+      background: var(--paper-blue);
+    }
+
+    .note-green {
+      background: var(--paper-green);
+    }
+
+    .note h2,
+    .note h3 {
+      margin: 0 0 6px;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .note small {
+      font-size: 11px;
+    }
+
+    .note-list {
+      margin: 6px 0 0;
+      padding-left: 16px;
+    }
+
+    .note-list li {
+      margin-bottom: 2px;
+    }
+
+    .photo-card {
+      padding: 10px 10px 14px;
+      background: #fdfdfb;
+      border-radius: 8px;
+    }
+
+    .photo-inner {
+      background: #222;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 6px;
+      aspect-ratio: 4 / 3;
+      position: relative;
+    }
+
+    .photo-placeholder {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(
+          120deg,
+          rgba(255, 255, 255, 0.2) 0,
+          transparent 60%
+        ),
+        radial-gradient(circle at top left, #ffffff 0, #f5e9d7 35%, #c49b6c 100%);
+      background-blend-mode: screen;
+    }
+
+    .photo-caption {
+      font-family: "Segoe Print", "Comic Sans MS", system-ui, sans-serif;
+      font-size: 12px;
+      color: #444;
+    }
+
+    /* PINS */
+    .pin {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: var(--pin-red);
+      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.35);
+      border: 2px solid rgba(0, 0, 0, 0.25);
+      cursor: pointer;
+      z-index: 3;
+    }
+
+    .pin.pin-blue {
+      background: var(--pin-blue);
+    }
+
+    .pin.pin-yellow {
+      background: var(--pin-yellow);
+    }
+
+    .pin::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 75%;
+      width: 2px;
+      height: 14px;
+      background: rgba(0, 0, 0, 0.4);
+      transform: translateX(-50%);
+      border-radius: 999px;
+    }
+
+    .note.dropped,
+    .photo-card.dropped {
+      transform: translateY(110px) rotate(6deg);
+      opacity: 0;
+      box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+      pointer-events: none;
+      filter: blur(1px);
+    }
+
+    .pin.dropped {
+      transform: translateX(-50%) translateY(16px) rotate(18deg);
+      box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+    }
+
+    /* TAGS / HIGHLIGHTS ON NOTES */
+    .note-tag {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 999px;
+      border: 1px dashed rgba(0, 0, 0, 0.25);
+      font-size: 11px;
+      margin-top: 4px;
+    }
+
+    .note-price {
+      font-size: 14px;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    .note-price span {
+      font-size: 12px;
+      font-weight: 400;
+    }
+
+    /* CONTACT BELOW BOARD */
+    .section-header {
+      margin-top: 6px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 12px;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .section-sub {
+      margin: 4px 0 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .pill {
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      background: #fdfaf4;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 18px;
+    }
+
+    .contact-card {
+      background: #fefcf7;
+      border-radius: 12px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+      padding: 14px 14px 16px;
+    }
+
+    .contact-row {
+      display: flex;
+      gap: 10px;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .contact-label {
+      width: 70px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .contact-value a {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .contact-note {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 8px;
+      font-size: 13px;
+    }
+
+    .field {
+      display: grid;
+      gap: 3px;
+    }
+
+    .field label {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .field input,
+    .field textarea {
+      border-radius: 8px;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      padding: 7px 9px;
+      font: inherit;
+      background: #fffdf7;
+      color: var(--ink);
+      resize: vertical;
+      min-height: 36px;
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: #a0a0a0;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(47, 133, 90, 0.25);
+    }
+
+    .form-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .btn {
+      border-radius: 999px;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      padding: 7px 14px;
+      font-size: 13px;
+      cursor: pointer;
+      background: #2f855a;
+      color: #fefcf7;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background var(--transition-fast), box-shadow var(--transition-fast),
+        transform var(--transition-fast);
+    }
+
+    .btn:hover {
+      background: #276749;
+      box-shadow: 0 8px 16px rgba(39, 103, 73, 0.35);
+      transform: translateY(-1px);
+    }
+
+    .small-text {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* FOOTER */
+    .footer {
+      padding: 14px 16px 18px;
+      font-size: 11px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .board {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .section {
+        padding-inline: 14px;
+      }
+
+      .board {
+        grid-template-columns: minmax(0, 1fr);
+        min-height: 0;
+      }
+
+      .board {
+        padding: 16px 12px 18px;
+      }
+
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-title {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="nav">
+      <div class="nav-inner">
+        <div class="brand">
+          <div class="brand-circle">AJ</div>
+          <div>
+            <div class="brand-text-main">AJ Bilvård</div>
+            <div class="brand-text-sub">Invändig biltvätt i Halmstad</div>
+          </div>
+        </div>
+        <nav class="nav-links" aria-label="Huvudnavigation">
+          <a href="#board">Översikt</a>
+          <a href="#kontakt">Kontakt</a>
+        </nav>
+        <a href="tel:+4670XXXXXXX" class="nav-cta">
+          <span>Ring för bokning</span>
+          <span>📞</span>
+        </a>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="section" id="start">
+        <div class="hero-intro">
+          <div class="hero-kicker">Handskriven anslagstavla-känsla</div>
+          <h1 class="hero-title">En ren bil invändigt, gjort av någon som bryr sig.</h1>
+          <p class="hero-sub">
+            AJ Bilvård är min lilla verksamhet vid sidan av studier och jobb. Jag kommer hem
+            till dig i <strong>Halmstad med omnejd</strong> och städar bilen invändigt – noggrant,
+            för hand.
+          </p>
+        </div>
+
+        <div class="board-wrap" id="board">
+          <div class="board">
+            <!-- Note: about -->
+            <article class="note note-yellow" data-note>
+              <button class="pin" type="button" aria-label="Lossa lappen"></button>
+              <h2>Hej! Jag heter Alex 👋</h2>
+              <p>
+                Jag är 19 år och gillar när saker är rena och ordnade. Istället för att sitta
+                stilla ville jag starta något eget – så det blev invändig biltvätt.
+              </p>
+              <p>
+                Jag tar hellre <strong>färre bilar</strong> och gör det ordentligt än många och
+                stressar. Du pratar direkt med mig, inte med något stort företag.
+              </p>
+              <span class="note-tag">Ung företagare • Halmstad</span>
+            </article>
+
+            <!-- Note: priser -->
+            <article class="note note-blue" data-note>
+              <button class="pin pin-blue" type="button" aria-label="Lossa lappen"></button>
+              <h3>Priser (inkl. moms)</h3>
+              <ul class="note-list">
+                <li><strong>Standard invändig</strong><br />Personbil – dammsugning, avtorkning, fickor, rutor.</li>
+                <li><strong>Noggrann invändig</strong><br />Extra fokus på detaljer och trånga utrymmen.</li>
+                <li><strong>Större bil / SUV</strong><br />Kombi, SUV, minibuss – efter överenskommelse.</li>
+              </ul>
+              <p class="note-price">
+                Standard: 450 kr <span>/ bil</span><br />
+                Noggrann: 550 kr <span>/ bil</span><br />
+                Större: från 650 kr
+              </p>
+              <small>Skriv gärna bilmodell och skicka bild så ger jag pris.</small>
+            </article>
+
+            <!-- Photo: before / after -->
+            <article class="photo-card" data-note>
+              <button class="pin pin-yellow" type="button" aria-label="Lossa fotot"></button>
+              <div class="photo-inner">
+                <!-- Byt ut mot riktig bild senare -->
+                <div class="photo-placeholder"></div>
+              </div>
+              <div class="photo-caption">
+                “Efter tre barn, hund och några års kaos kändes bilen nästan ny igen.”<br />
+                <strong>– Lisa, Halmstad</strong>
+              </div>
+            </article>
+
+            <!-- Note: hur går det till -->
+            <article class="note note-green" data-note>
+              <button class="pin pin-blue" type="button" aria-label="Lossa lappen"></button>
+              <h3>Så går det till</h3>
+              <ul class="note-list">
+                <li>1. Du hör av dig via sms, samtal eller formuläret.</li>
+                <li>2. Berätta bilmodell, ungefärligt skick och önskad tid.</li>
+                <li>3. Jag bekräftar pris och tid – ofta kväll/helg.</li>
+                <li>4. Jag kommer till dig med allt som behövs.</li>
+              </ul>
+              <span class="note-tag">Enkelt, personligt och förutsägbart</span>
+            </article>
+
+            <!-- Photo: "körkort" / friendly photo -->
+            <article class="photo-card" data-note>
+              <button class="pin" type="button" aria-label="Lossa fotot"></button>
+              <div class="photo-inner">
+                <div class="photo-placeholder"></div>
+              </div>
+              <div class="photo-caption">
+                Här kan vi lägga in en bild på mig eller en ren bilinteriör senare.
+              </div>
+            </article>
+
+            <!-- Note: tider / område -->
+            <article class="note note-yellow" data-note>
+              <button class="pin pin-yellow" type="button" aria-label="Lossa lappen"></button>
+              <h3>Tider & område</h3>
+              <p>
+                Jag jobbar främst <strong>kvällar och helger</strong>, ibland även vardagar efter
+                överenskommelse.
+              </p>
+              <p>
+                Jag utgår från <strong>Halmstad</strong> men kan ibland åka lite längre om det passar
+                schemat.
+              </p>
+              <small>Fråga gärna, så försöker jag lösa det.</small>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- KONTAKT -->
+      <section class="section" id="kontakt">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Kontakt & bokning</h2>
+            <p class="section-sub">
+              Skicka ett sms, ring eller fyll i formuläret så återkommer jag så snart jag kan.
+            </p>
+          </div>
+          <div class="pill">Jobbar främst kvällar & helger</div>
+        </div>
+
+        <div class="contact-grid">
+          <aside class="contact-card">
+            <div class="contact-row">
+              <div class="contact-label">Telefon</div>
+              <div class="contact-value">
+                <a href="tel:+4670XXXXXXX">070-XXX XX XX</a>
+              </div>
+            </div>
+            <div class="contact-row">
+              <div class="contact-label">E-post</div>
+              <div class="contact-value">
+                <a href="mailto:kontakt@ajbilvard.se">kontakt@ajbilvard.se</a>
+              </div>
+            </div>
+            <div class="contact-row">
+              <div class="contact-label">Område</div>
+              <div class="contact-value">
+                Halmstad med omnejd – fråga gärna om du bor lite utanför.
+              </div>
+            </div>
+            <p class="contact-note">
+              Skriv gärna <strong>bilmodell</strong>, ungefär vilket skick bilen är i (barn, hund, mycket
+              smuts osv) och förslag på dag/tid. En bild på insidan av bilen vid sms gör det
+              lättare att ge ett rättvist pris direkt.
+            </p>
+          </aside>
+
+          <form class="contact-card contact-form" onsubmit="return sendMailto(event)">
+            <div class="field">
+              <label for="name">Namn</label>
+              <input id="name" name="name" type="text" placeholder="Ditt namn" required />
+            </div>
+            <div class="field">
+              <label for="phone">Telefon</label>
+              <input id="phone" name="phone" type="tel" placeholder="07X-XXX XX XX" required />
+            </div>
+            <div class="field">
+              <label for="car">Bilmodell</label>
+              <input
+                id="car"
+                name="car"
+                type="text"
+                placeholder="Ex: Volvo V60, kombi, minibuss..."
+              />
+            </div>
+            <div class="field">
+              <label for="message">Meddelande</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="3"
+                placeholder="Kort om vad du vill ha hjälp med samt förslag på dag/tid."
+              ></textarea>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn">
+                <span>Skicka förfrågan</span>
+                <span>✉️</span>
+              </button>
+              <div class="small-text">
+                Formuläret öppnar ditt e-postprogram med allt ifyllt – du skickar därifrån.
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      © <span id="year"></span> AJ Bilvård – invändig biltvätt i Halmstad med omnejd.
+    </footer>
+  </div>
+
+  <script>
+    // aktuellt år i footern
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // klick på pins: släpp ner lappen/fotot
+    document.querySelectorAll(".board [data-note]").forEach(function (note) {
+      var pin = note.querySelector(".pin");
+      if (!pin) return;
+      pin.addEventListener("click", function () {
+        if (note.classList.contains("dropped")) return;
+        note.classList.add("dropped");
+        pin.classList.add("dropped");
+      });
+    });
+
+    // enkel mailto-form
+    function sendMailto(event) {
+      event.preventDefault();
+      var name = document.getElementById("name").value.trim();
+      var phone = document.getElementById("phone").value.trim();
+      var car = document.getElementById("car").value.trim();
+      var message = document.getElementById("message").value.trim();
+
+      var subject = encodeURIComponent("Förfrågan biltvätt från " + name);
+      var bodyLines = [
+        "Namn: " + name,
+        "Telefon: " + phone,
+        car ? "Bilmodell: " + car : "",
+        "",
+        message || "Jag är intresserad av invändig biltvätt."
+      ].filter(Boolean);
+
+      var body = encodeURIComponent(bodyLines.join("\n"));
+      var mailto =
+        "mailto:kontakt@ajbilvard.se?subject=" + subject + "&body=" + body;
+      window.location.href = mailto;
+      return false;
+    }
+  </script>
+</body>
+</html>
